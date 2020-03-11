@@ -2,6 +2,9 @@ package models;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Header {
 
     TWITCH(System.getenv("REACT_APP_TWITCH_CLIENT_ID"),System.getenv("REACT_APP_TWITCH_SECRET")),
@@ -10,19 +13,26 @@ public enum Header {
     FACEBOOK(null),
     MIXER(null);
 
-    private JSONObject body;
+    private Map<Integer,String> body;
 
-    Header(String... body){
-        this.body= new JSONObject(body);
+    Header(String... headerElements){
+        this.body = new HashMap<>();
+        System.out.println(headerElements.length);
+        for (int index=0; index<=headerElements.length; index++){
+            System.out.println(headerElements[index]);
+            //            this.body.put(index,headerElements[index]);
+        }
     }
 
     public JSONObject getBody() {
-        return body;
+        return new JSONObject(body);
     }
 
-    public void setBody(JSONObject body) {
-        this.body = body;
+    public void addHeaderItem(String item){
+        int index = this.body.size()+1;
+        this.body.put(index,item);
     }
 
-    //Client-ID: value
 }
+
+
