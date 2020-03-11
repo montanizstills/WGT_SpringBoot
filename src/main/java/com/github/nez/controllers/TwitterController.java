@@ -1,4 +1,4 @@
-package controllers;
+package com.github.nez.controllers;
 
 public class TwitterController {
 }

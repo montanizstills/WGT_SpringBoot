@@ -1,6 +1,6 @@
-package controllers;
+package com.github.nez.controllers;
 
-import models.Header;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import services.TwitchService;
+import com.github.nez.services.TwitchService;
 
 @Controller
-@CrossOrigin(value="localhost:4200/")
+@CrossOrigin("http://localhost:3000")
 public class TwitchController {
 
     private TwitchService twitchService;
@@ -23,7 +23,7 @@ public class TwitchController {
 
     @RequestMapping(value = "/twitch/header", method = RequestMethod.GET)
     public ResponseEntity<?> getHeaders(){
-        Header header = twitchService.getHeader();
+        JSONObject header = twitchService.getHeader();
         ResponseEntity responseEntity = new ResponseEntity(header, HttpStatus.OK);
         return responseEntity;
     }

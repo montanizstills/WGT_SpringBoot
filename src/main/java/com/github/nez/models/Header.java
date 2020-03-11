@@ -1,4 +1,4 @@
-package models;
+package com.github.nez.models;
 
 import org.json.JSONObject;
 
