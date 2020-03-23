@@ -22,8 +22,9 @@ public class TwitchController {
     }
 
     @RequestMapping(value = "/twitch/header", method = RequestMethod.GET)
-    public ResponseEntity<?> getHeaders(){
+    public ResponseEntity<?> getHeader(){
         JSONObject header = twitchService.getHeader();
+        System.out.println(header);
         ResponseEntity responseEntity = new ResponseEntity(header, HttpStatus.OK);
         return responseEntity;
     }
