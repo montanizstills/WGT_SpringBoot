@@ -9,7 +9,7 @@ public enum Header {
 
     TWITCH("REACT_APP_TWITCH_CLIENT_ID", "REACT_APP_TWITCH_SECRET"),
     DISCORD,
-    TWITTER,
+    TWITTER("SPRING_TWITTER_CONSUMER_KEY", "SPRING_TWITTER_ACCESS_TOKEN"),
     FACEBOOK,
     MIXER;
 
@@ -20,7 +20,6 @@ public enum Header {
         for (String element: headerElements){
             this.body.put(element,System.getenv(element));
         }
-
     }
 
     public JSONObject getBody() {
@@ -29,6 +28,10 @@ public enum Header {
 
     public void addHeaderItem(String item){
         this.body.put(item,System.getenv(item));
+    }
+
+    public String getHeaderItem(String itemName){
+        return this.body.get(itemName);
     }
 
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 public class TwitterController {
 
     private TwitterService twitterService;
@@ -19,6 +19,7 @@ public class TwitterController {
     public TwitterController(TwitterService twitterService){
         this.twitterService=twitterService;
     }
+
 
 //    request token
 //    authorize

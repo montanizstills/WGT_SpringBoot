@@ -4,26 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import java.net.*;
 
 
 public class cURL {
 
     URL url;
-    HttpURLConnection connection;
+    URLConnection connection;
     InputStream response;
     String output;
 
-    public cURL(String incomingURL, String httpMethodType){
+    public cURL(String incomingURL){
        createUrl(incomingURL);
-        try {
-            this.connection.setRequestMethod(httpMethodType);
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
     }
 
     public void createUrl(String incomingURL){
@@ -36,10 +28,11 @@ public class cURL {
 
     public void establishConnection(){
         try {
-            this.connection = (HttpURLConnection) this.url.openConnection();
+            this.connection =  this.url.openConnection();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void catchResponse(){
@@ -54,7 +47,10 @@ public class cURL {
         BufferedReader br = new BufferedReader(new InputStreamReader(response));
         StringBuffer sb = new StringBuffer();
         try{
-            while(br.readLine()!=null){sb.append(output);}
+            while(br.readLine()!=null){
+                System.out.println(br.readLine());
+                sb.append(output);
+            }
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -75,7 +71,7 @@ public class cURL {
         this.url = url;
     }
 
-    public HttpURLConnection getConnection() {
+    public URLConnection getConnection() {
         return connection;
     }
 
