@@ -5,8 +5,6 @@ import com.github.nez.models.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.HttpURLConnection;
-
 @Service
 public class TwitterService {
 
@@ -23,15 +21,21 @@ public class TwitterService {
         return url.getOutput();
     }
 
-
-//
+public String authenticate(){
 //    GET oauth/authorize
 //    Params: oauth_token
-//
-//    POST oauth/access_token
-//    Params: oauth_verifier,
-//    oauth_consumer_key,
-//    oauth_token
+return null;
+}
+
+public String getAccessToken(){
+        cURL url = new cURL("https://api.twitter/oauth/access_token");
+    //    POST oauth/access_token
+    //    Params: oauth_verifier,
+    //    oauth_consumer_key,
+    //    oauth_token
+        return null;
+}
+
 
 
 }
