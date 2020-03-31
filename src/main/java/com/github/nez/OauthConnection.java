@@ -28,10 +28,11 @@ public enum OauthConnection {
      public String getAuth(){
          return this.body;
      }
-    public String connect(String uri){
+    public String retrieve(String uri){
         String responseString="";
         HttpPost postRequest = new HttpPost(uri);
         postRequest.setHeader("Authorization",OauthConnection.TWITTER_REQUEST_TOKEN.getAuth());
+        postRequest.addHeader("Access-Control-Allow-Origin","*");
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpResponse response = null;
