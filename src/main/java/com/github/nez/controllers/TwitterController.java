@@ -25,6 +25,7 @@ public class TwitterController {
 //    authorize
 //    access token
 
+
     @RequestMapping(value = "/twitter/request", method = RequestMethod.GET)
     ResponseEntity<?> getRequestToken(){
         String token = twitterService.getRequestToken();

@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="wwltp">
+    <output-path>$PROJECT_DIR$/out/artifacts/wwltp</output-path>
+    <root id="archive" name="wwltp.jar" />
+  </artifact>
+</component>

@@ -17,7 +17,8 @@ public class TwitterService {
 
     public String getRequestToken() {
         String response = OauthConnection.TWITTER_REQUEST_TOKEN.retrieve("https://api.twitter.com/oauth/request_token");
-        return response.split("=|&")[1];
+//        return response.split("=|&")[1];
+        return response;
     }
 
     public void authenticate(String token) {
