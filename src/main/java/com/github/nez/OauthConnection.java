@@ -1,5 +1,6 @@
 package com.github.nez;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -8,15 +9,17 @@ import org.apache.http.impl.client.HttpClients;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.Instant;
 
 public enum OauthConnection {
     TWITTER_REQUEST_TOKEN("OAuth " +
-            "oauth_consumer_key="+ System.getenv("TWITTER_CONSUMER_KEY")+","+
-            "oauth_token="+ System.getenv("TWITTER_ACCESS_TOKEN")+","+
+            "oauth_consumer_key="+System.getenv("TWITTER_CONSUMER_KEY")+","+
+            "oauth_token="+System.getenv("TWITTER_ACCESS_TOKEN")+","+
             "oauth_signature_method=HMAC-SHA1,"+
-            "oauth_timestamp=1586446442," +
-            "oauth_nonce=xySSnxZQEvi," +
-            "oauth_version=1.0,oauth_signature=m4%2BScQYRJsxt2k5DQ9K7Jin6ti8%3D");
+            "oauth_timestamp="+Instant.now().getEpochSecond()+","+
+            "oauth_nonce="+RandomStringUtils.randomAlphabetic(11)+","+
+            "oauth_version=1.0,"+
+            "oauth_signature="+new HmacSha1Signature(System.getenv("TWITTER_CONSUMER_KEY")).getSignature());
 
      OauthConnection(String body){
          this.body=body;
@@ -27,6 +30,7 @@ public enum OauthConnection {
      public String getHeaders(){
          return this.body;
      }
+
 
      public HttpResponse getHttpResponse(HttpPost postRequest){
          CloseableHttpClient httpClient = HttpClients.createDefault();
